@@ -3,6 +3,7 @@ package interval_tree;
 /**
  * @author zxs666
  * @date 2020/11/24 17:30
+ * 区间定义
  */
 public class Interval {
     int low;

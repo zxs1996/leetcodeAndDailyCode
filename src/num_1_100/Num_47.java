@@ -35,6 +35,7 @@ public class Num_47 {
         }
         for (int i = 0; i < nums.length; i++) {
             //剪枝,条件为：i>0  nums[i] == nums[i - 1]  且前一个元素没被访问过
+            // 比如 1 1 2
             //如果前一个元素已经被访问了，那么这个元素不是作为一个新的元素
             if (i > 0 && nums[i] == nums[i - 1] && flag[i - 1])
                 continue;

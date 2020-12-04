@@ -5,7 +5,7 @@ package interval_tree;
 /**
  * @author zxs666
  * @date 2020/11/4 15:19
- * 红黑树
+ * 区间树
  */
 public class IntervalTree {
     private static int RED_COLOR = 1;

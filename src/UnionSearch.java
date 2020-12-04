@@ -1,7 +1,7 @@
 
 
-/*
-并查集
+/**
+ * 并查集
  */
 public class UnionSearch {
 
