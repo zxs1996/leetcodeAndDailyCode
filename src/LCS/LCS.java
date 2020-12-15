@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import javax.xml.transform.Source;
 import java.util.Arrays;
+import java.util.Scanner;
 
 /**
  * @author zxs666
@@ -11,16 +12,26 @@ import java.util.Arrays;
  */
 public class LCS {
 
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("请输入text1: ");
+        String s3 = sc.next();
+        System.out.print("请输入text2: ");
+        String s4 = sc.next();
+        System.out.println(s3 + "--" + s4);
+        String res = new LCS().lcs(s3, s4);
+        System.out.println(res);
+    }
+
     @Test
     public void test1() {
-        int[] dp=new int[3];
-        System.out.println(Arrays.toString(dp));
+
         String s1 = "ACCGGTCGAGTGCGCGGAAGCCGGCCGAA";
         String s2 = "GTCGTTCGGAATGCCGTTGCTCTGTAAA";
-        String s3 = "10010101";
-        String s4 = "010110110";
-        String res = lcs(s3, s4);
-        System.out.println(res);
+        //String s3 = "10010101";
+        //String s4 = "010110110";
+
+
     }
 
     public String lcs(String s1, String s2) {
@@ -40,33 +51,34 @@ public class LCS {
                     dp[i + 1][j + 1] = dp[i + 1][j];
                     solution[i + 1][j + 1] = 2;//往左
                 }
-
             }
         }
         System.out.println("最长lcs长度：" + dp[arr1.length][arr2.length]);
         return creataString(solution, arr1, arr2);
     }
 
-    public int longestCommonSubsequence(String text1, String text2) {
-        if(text1.length()>text2.length()){
-            String tmp=text1;
-            text1=text2;
-            text2=tmp;
-        }
-        int l1=text1.length();
-        int l2=text2.length();
-        int[] dp=new int[l1+1];
-        for(int i=1;i<=l2;i++){
-            for(int j=l1;j>0;j--){
-                if(text1.charAt(j-1)==text2.charAt(i-1))
-                    dp[j]=dp[j-1]+1;
-                else
-                    dp[j]=Math.max(dp[j],dp[j-1]);
-            }
-            //System.out.println( Arrays.toString(dp));
-        }
-        return dp[l1];
 
+    public int longestCommonSubsequence(String text1, String text2) {
+
+        if (text1 == null || text2 == null ||
+                text1.length() == 0 || text2.length() == 0) return 0;
+
+        int m = text1.length(), n = text2.length();
+        int[] dp = new int[n + 1];
+        int tmp;
+        for (int i = 1; i <= m; i++) {
+            int last = 0;//记录左上角的值，每一轮开始的时候值都是0
+            for (int j = 1; j <= n; j++) {
+                tmp = dp[j];//记录当前正上方的数
+                //如果两个字符相等，那么等于左上角值+1
+                if (text1.charAt(i - 1) == text2.charAt(j - 1))
+                    dp[j] = last + 1;
+                    //否则从左边和上边找一个较大的
+                else dp[j] = Math.max(tmp, dp[j - 1]);
+                last = tmp;//更新last，tmp变为左上角，下一轮使用
+            }
+        }
+        return dp[n];
     }
 
 

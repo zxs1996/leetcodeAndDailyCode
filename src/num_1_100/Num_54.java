@@ -1,5 +1,7 @@
 package num_1_100;
 
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -49,6 +51,55 @@ public class Num_54 {
             //下一轮，m n分别减2
             m -= 2;
             n -= 2;
+        }
+        return res;
+    }
+
+
+    @Test
+    public void test(){
+        int[][] matrix={{1,2,3,4},
+                        {5,6,7,8},
+                        {9,10,11,12}};
+        spiralOrder2(matrix);
+
+    }
+
+    public int[] spiralOrder2(int[][] matrix) {
+
+        int m=matrix.length;
+        if(m==0)
+            return new int[0];
+        int n=matrix[0].length;
+        int[] res=new int[m*n];
+
+        int times=(int)Math.ceil((double)Math.min(m,n)/2);
+        int index=0;
+
+        for(int i=0;i<times;i++){
+            int x=i,y=i;
+
+            for(;y<n-i;y++)
+                res[index++]=matrix[x][y];
+            System.out.println(x+", "+y);
+            y--;
+            x++;
+
+            for(;x<m-i;x++)
+                res[index++]=matrix[x][y];
+            System.out.println(x+","+y);
+            x--;
+            y--;
+            for(;y>=i&&index<m*n;y--)
+                res[index++]=matrix[x][y];
+
+            System.out.println(x+", "+y);
+            y++;
+            x--;
+            for(;x>i&&index<m*n;x--)
+                res[index++]=matrix[x][y];
+            System.out.println(x+", "+y);
+            System.out.println(Arrays.toString(res));
         }
         return res;
     }
