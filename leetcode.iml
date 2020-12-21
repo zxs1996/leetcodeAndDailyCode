@@ -12,6 +12,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/week_contest/214" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/week_contest/218" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/week_contest/219" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/week_contest/220" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
