@@ -2,10 +2,12 @@ package 力扣_1_100;
 
 import org.junit.Test;
 
+import java.util.zip.CheckedOutputStream;
+
 /**
  * @author zxs666
  * @date 2020/11/15 20:56
- *
+ * <p>
  * 二分法：每次对k二分，k/2，然后去掉较小的那一半
  */
 public class Num_4 {
@@ -18,16 +20,18 @@ public class Num_4 {
         System.out.println(res);
     }
 
+
+    //O(log(m+n))的算法
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         int m = nums1.length;
         int n = nums2.length;
         //如果是奇数
         if ((m + n) % 2 == 1)
-            return findKth(nums1, 0, nums1.length - 1, nums2, 0, nums2.length - 1, (m + n + 1) / 2);
+            return findKth(nums1, 0, m - 1, nums2, 0, n - 1, (m + n + 1) / 2);
             //偶数
         else {
-            double res1 = findKth(nums1, 0, nums1.length - 1, nums2, 0, nums2.length - 1, (m + n) / 2);
-            double res2 = findKth(nums1, 0, nums1.length - 1, nums2, 0, nums2.length - 1, (m + n + 1) / 2 + 1);
+            double res1 = findKth(nums1, 0, m - 1, nums2, 0, n - 1, (m + n) / 2);
+            double res2 = findKth(nums1, 0, m - 1, nums2, 0, n - 1, (m + n + 1) / 2 + 1);
             return (res1 + res2) / 2;
         }
 
@@ -55,4 +59,26 @@ public class Num_4 {
         }
 
     }
+
+    //O(m+n)算法
+    public double findMedianSortedArrays2(int[] nums1, int[] nums2) {
+        int m = nums1.length;
+        int n = nums2.length;
+        int len = m + n;
+        int left = -1, right = -1;
+        int start1 = 0, start2 = 0;
+        for (int i = 0; i <= len / 2; i++) {
+            left = right;
+            if (start1 < m && (start2 >= n || nums1[start1] < nums2[start2])) {
+                right = nums1[start1++];
+            } else {
+                right = nums2[start2++];
+            }
+        }
+        if ((len & 1) == 0)
+            return (left + right) / 2.0;
+        else
+            return right;
+    }
+
 }

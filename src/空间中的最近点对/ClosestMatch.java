@@ -46,6 +46,8 @@ public class ClosestMatch {
     }
 
 
+
+
     int[] point1;
     int[] point2;
     double minDistance = Integer.MAX_VALUE;

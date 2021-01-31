@@ -4,15 +4,9 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/week_contest/206" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/week_contest/211" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/week_contest/212" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/week_contest/215" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/week_contest/Num_198" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/week_contest/214" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/week_contest/218" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/week_contest/219" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/week_contest/220" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/双周赛/42" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/周赛/no_221" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/周赛/no_222" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />

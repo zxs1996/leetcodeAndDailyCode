@@ -92,7 +92,7 @@ public class Num_146 {
     }
 
 
-    //使用linkedhashMap linkedHashMap
+    //使用linkedhashMap
     class LRUCache2 extends LinkedHashMap<Integer, Integer> {
         private int capacity;
 
@@ -184,7 +184,9 @@ public class Num_146 {
                     rear.pre = rear.pre.pre;
                     rear.pre.next = rear;
 
-                } else//
+                }
+                //否则不满
+                else
                     usedSize++;
             }
             //将node插入到头部去
@@ -195,4 +197,6 @@ public class Num_146 {
             head.next = node;
         }
     }
+
+
 }

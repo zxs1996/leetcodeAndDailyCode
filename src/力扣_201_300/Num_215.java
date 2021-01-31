@@ -1,17 +1,19 @@
 package 力扣_201_300;
 
+import org.junit.Test;
+
 /**
  * Created by zxs666 on 2020/8/8.
  * 利用快排的二分进行查找第K个最大的元素
  */
 public class Num_215 {
-    public static void main(String[] args) {
+    @Test
+    public void test() {
         int max = 100, min = 0;
         for (int i = 0; i < 100; i++) {
             int ran2 = (int) (Math.random() * (max - min) + min);
             System.out.print(ran2 + " ");
         }
-
     }
 
     public int findKthLargest(int[] nums, int k) {

@@ -17,6 +17,13 @@ public class Num_239 {
     }
 
 
+    /**
+     * 暴力法，时间复杂度会超
+     *
+     * @param nums
+     * @param k
+     * @return
+     */
     public int[] maxSlidingWindow(int[] nums, int k) {
         int[] res = new int[nums.length - k + 1];
         int start = 0, end = k;
@@ -43,40 +50,44 @@ public class Num_239 {
     }
 
 
-    ArrayDeque<Integer> queue = new ArrayDeque();
-    int[] nums;
-
-    //先清理前一个,
-    public void cleanQueue(int i, int k) {
-        //移除不在窗口里面的元素,如果最大元素下标等于i-k说明，这个最大元素已经是上一个元素了。
-        if (!queue.isEmpty() && queue.getFirst() == i - k)
-            queue.removeFirst();
-        //移除所有比当前元素小的元素的索引，从后往前移除。因为当前元素一定是在前面元素的后面，移除前面的元素不影响最大值
-        while (!queue.isEmpty() && nums[i] > nums[queue.getLast()])
-            queue.removeLast();
-    }
-
+    /**
+     * 使用栈记录当前滑动窗口的数据，注意栈里面存放下标，不是值
+     * 比如k=3，窗口值为1 2 3时，我们只有存3的下标就行。因为1 2比3小，并且比3先被移出滑动窗口
+     * 比如k=3，窗口值为2 3 1，这是栈从底到上应该是3 1，需要把1保留下来，因为有可能3移出去了，后面的窗口最大值是1
+     * 队一定是一个严格递减的队列
+     *
+     * @param nums
+     * @param k
+     * @return
+     */
     public int[] maxSlidingWindow2(int[] nums, int k) {
-        int[] res = new int[nums.length - k + 1];
-        this.nums = nums;
-        int maxIndex = 0;
-        //先初始化第一个队列
+        int n = nums.length;
+        int[] res = new int[n - k + 1];
+        Deque<Integer> queue = new LinkedList<>();
+        //利用前k个元素初始化队列
         for (int i = 0; i < k; i++) {
-            //移除不在区间内的元素
-            cleanQueue(i, k);
+            while (!queue.isEmpty() && nums[queue.getLast()] <= nums[i])
+                queue.removeLast();
             queue.addLast(i);
-            if (nums[i] > nums[maxIndex])
-                maxIndex = i;
         }
-        //第一个元素
-        res[0] = nums[maxIndex];
-        for (int i = k; i < nums.length; i++) {
-            //清理队列
-            cleanQueue(i, k);
-            //将当前下标放入队列
-            queue.add(i);
-            res[i - k + 1] = nums[queue.getFirst()];
+        //第一个值
+        res[0] = nums[queue.getFirst()];
+
+        //往右移动滑动窗口，最开始滑动窗口为[0,k-1]
+        //这里我们设置left左边界从1开始，右边界为left+k-1
+        for (int left = 1; left + k <= n; left++) {
+            int right = left + k - 1;
+            //如果当前队头元素的索引小于了left，表示队头出了滑动窗口
+            if (queue.getFirst() < left)
+                queue.removeFirst();
+            //循环判断，当前要加入的元素是否大于等于队尾元素，如果大于那么移除队尾
+            while (!queue.isEmpty() && nums[queue.getLast()] <= nums[right])
+                queue.removeLast();
+            queue.addLast(right);
+            res[left] = nums[queue.getFirst()];
         }
         return res;
     }
+
+
 }
