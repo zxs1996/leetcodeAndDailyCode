@@ -54,9 +54,8 @@ public class TSP {
         int res = Integer.MAX_VALUE;
         for (int i = 1; i < citys; i++) {
             //如果当前点被访问过或者当前点是number号点
-            if (visited[i] || i == number)
-                continue;
-            else {
+            if (!visited[i] && i != number)
+            {
                 visited[i] = true;
                 //剪枝，如果当前number到i的距离已经大于等于minDistance了，那么直接continue，没必要往下走了
                 if(distance[number][i]>=minDistance)

@@ -38,4 +38,35 @@ public class Num_103 {
         }
         return res;
     }
+
+
+    public List<List<Integer>> zigzagLevelOrder2(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
+        Queue<TreeNode> queue = new ArrayDeque<>();
+        if (root != null)
+            queue.add(root);
+        int flag = 1;
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            List<Integer> temp = new ArrayList<>();
+            for (int i = 0; i < size; i++) {
+                TreeNode cur = queue.poll();
+                temp.add(cur.val);
+                if (cur.left != null)
+                    queue.add(cur.left);
+                if (cur.right != null)
+                    queue.add(cur.right);
+            }
+            if (flag == 1)
+                res.add(temp);
+            else {
+                List<Integer> temp2 = new ArrayList<>();
+                for (int i = temp.size() - 1; i >= 0; i--)
+                    temp2.add(temp.get(i));
+                res.add(temp2);
+            }
+            flag *= -1;
+        }
+        return res;
+    }
 }

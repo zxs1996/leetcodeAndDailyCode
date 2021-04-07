@@ -32,6 +32,27 @@ public class Num_347 {
 
     }
 
+    public int[] topKFrequent2(int[] nums, int k) {
+        int[] res = new int[k];
+        //先试用一个map记录每个数字出现的次数
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int num : nums)
+            map.put(num, map.getOrDefault(num, 0) + 1);
+
+        //用一个优先队列,里面放键值对key是出现的次数，value是对应值,按照key从大到小排序
+        PriorityQueue<Pair<Integer, Integer>> pq = new PriorityQueue<>(Comparator.comparingInt(p -> -p.getKey()));
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            Pair<Integer, Integer> p = new Pair(entry.getValue(), entry.getKey());
+            pq.add(p);
+        }
+
+        for (int i = 0; i < k; i++) {
+            res[i] = pq.poll().getValue();
+        }
+        return res;
+
+    }
+
     @Test
     public void test1(){
         PriorityQueue<Pair<Integer,Integer>> pq=new PriorityQueue<>(Comparator.comparingInt(p->p.getKey()));

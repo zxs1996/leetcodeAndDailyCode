@@ -1,5 +1,8 @@
 package 力扣_1_100;
 
+import org.junit.Test;
+
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,6 +73,35 @@ public class Num_6 {
         for (StringBuffer rowS : rows)
             sb.append(rowS);
         return sb.toString();
+    }
+
+
+    public String convert3(String s, int numRows) {
+
+        if(numRows==1)
+            return s;
+        StringBuffer[] sbs = new StringBuffer[numRows];
+        for (int i = 0; i < numRows; i++)
+            sbs[i] = new StringBuffer();
+        int step = -1;
+        int index = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            sbs[index].append(s.charAt(i));
+            if (index == numRows - 1 || index == 0)
+                step *= -1;
+            index += step;
+        }
+        StringBuffer res = new StringBuffer();
+        for (int j = 0; j < numRows; j++)
+            res.append(sbs[j]);
+        return res.toString();
+    }
+
+    @Test
+    public void test(){
+        String s="PAYPALISHIRING";
+        System.out.println(convert3(s,3));
     }
 }
 

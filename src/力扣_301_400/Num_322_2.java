@@ -41,4 +41,23 @@ public class Num_322_2 {
 
 
     }
+
+
+    public int coinChange2(int[] coins, int amount) {
+        Arrays.sort(coins);
+        //dp[amount]表示凑amount需要的最少硬币
+        int[] dp = new int[amount + 1];
+        int INIT_MAX = amount + 1;
+        Arrays.fill(dp, INIT_MAX);//初始成amout+1，这个值很大
+        dp[0] = 0;//凑0块钱需要0块硬币
+        //使用前i种硬币
+        for (int i = 1; i < coins.length; i++) {
+            for (int j = coins[i]; j <= amount; j++)
+                dp[j] = Math.min(dp[j], dp[i - coins[j]] + 1);
+        }
+        return dp[amount] == INIT_MAX ? -1 : dp[amount];
+
+    }
+
+
 }
